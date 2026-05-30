@@ -49,17 +49,44 @@
     </style>
 
     <!-- Amplitude SDK -->
-    <script src="https://cdn.amplitude.com/script/47b8a978fd7489fec678c3b9740e6e65.engagement.js"></script>
+    <script src="https://cdn.amplitude.com/script/47b8a978fd7489fec678c3b9740e6e65.js"></script>
 
     <script>
-        window.amplitude.add(window.sessionReplay.plugin({sampleRate: 1}));
+        window.amplitude.add(
+            window.sessionReplay.plugin({
+                sampleRate: 1
+            })
+        );
 
-        window.amplitude.init('47b8a978fd7489fec678c3b9740e6e65', {
-            fetchRemoteConfig: true,
-            autocapture: true
-        });
+        window.amplitude.init(
+            "47b8a978fd7489fec678c3b9740e6e65",
+            {
+                fetchRemoteConfig: true,
+                autocapture: {
+                    attribution: {
+                        trackingMethod: [
+                            "userProperty",
+                            "eventProperty"
+                        ]
+                    },
+                    fileDownloads: true,
+                    formInteractions: true,
+                    pageViews: true,
+                    sessions: true,
+                    elementInteractions: true,
+                    networkTracking: true,
+                    webVitals: true,
+                    frustrationInteractions: {
+                        thrashedCursor: true,
+                        errorClicks: true,
+                        deadClicks: true,
+                        rageClicks: true
+                    }
+                }
+            }
+        );
 
-        window.amplitude.track('page_viewed');
+        window.amplitude.track("page_viewed");
     </script>
 
 </head>
@@ -78,14 +105,14 @@
     </div>
 
     <script>
-        document.getElementById('signup-btn').addEventListener('click', function () {
-            window.amplitude.track('sign_up_clicked');
-            alert('Sign Up clicked');
+        document.getElementById("signup-btn").addEventListener("click", function () {
+            window.amplitude.track("sign_up_clicked");
+            alert("Sign Up clicked");
         });
 
-        document.getElementById('demo-btn').addEventListener('click', function () {
-            window.amplitude.track('request_demo_clicked');
-            alert('Request Demo clicked');
+        document.getElementById("demo-btn").addEventListener("click", function () {
+            window.amplitude.track("request_demo_clicked");
+            alert("Request Demo clicked");
         });
     </script>
 
